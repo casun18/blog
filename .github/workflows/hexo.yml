@@ -1,16 +1,39 @@
 name: Build and Deploy
-on: [push]
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true
 
-    - name: Build and Deploy
-      uses: renzhaosy/hexo-deploy-action@master
-      env:
-        PERSONAL_TOKEN: ${{ secrets.BLOG_TOKEN }}
-        PUBLISH_REPOSITORY: casun18/casun18.github.io # The repository the action should deploy to.
-        BRANCH: main  # The branch the action should deploy to.
-        PUBLISH_DIR: ./public # The folder the action should deploy.
+      - name: Install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
+
+      - name: Generate
+        uses: docker://ghcr.io/mileschou/hexo
+        with:
+          args: hexo generate
+
+      - name: Deploy
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.BLOG_TOKEN }} 
+          branch: gh-pages
+          single-commit: true
+          folder: public
+          clean: true
+          clean-exclude: |
+            .nojekyll
