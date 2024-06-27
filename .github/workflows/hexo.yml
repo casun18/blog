@@ -24,16 +24,14 @@ jobs:
       - name: Generate
         uses: docker://ghcr.io/mileschou/hexo
         with:
-          args: hexo generate
+          args: hexo d
 
       - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
-        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          token: ${{ secrets.BLOG_TOKEN }} 
-          branch: gh-pages
-          single-commit: true
-          folder: public
-          clean: true
-          clean-exclude: |
-            .nojekyll
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
+          personal_token: ${{ secrets.BLOG }}
+          external_repository: casun18/casun18.github.io
+          publish_branch: gh-pages  # default: gh-pages
+          publish_dir: ./public
