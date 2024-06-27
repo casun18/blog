@@ -3,14 +3,22 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
-keywords:
-author: John Doe
-language: en
+title: Yang's Blog
+# subtitle: ''
+# description: ''
+# avatar: https://pic.qqans.com/up/2024-2/17083075565776136.jpg
+author: Yang
+language: zh-CN
 timezone: ''
 
+open_graph:
+  enable: true
+  twitter_id: # for open_graph meta
+
+article:
+  type: story # tech/story
+  auto_cover: true
+  auto_excerpt: 50
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: http://example.com
