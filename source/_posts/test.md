@@ -10,6 +10,7 @@ topic:
 author:
 references:
 type: story
+wiki: test
 ---
 # 这是一个测试文档
 ## 主要是为了检测特性
