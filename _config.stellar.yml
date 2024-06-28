@@ -1,0 +1,61 @@
+# 侧边栏主功能导航菜单
+menubar:
+  columns: 2 # 一行多少个
+  items: # 可按照自己需求增加，符合以下格式即可
+    # id: 页面中高亮的 menu_id 
+    # theme: 高亮时的颜色，仅 svg 中 fill="currentColor" 时有效
+    # icon: 支持 svg/img 标签，可以定义在 icons.yml 文件中，也支持外部图片的 URL
+    # title: 标题
+    # url: 点击跳转到哪，支持相对路径和绝对路径
+    - id: post
+      theme: '#1BCDFC'
+      icon: solar:documents-bold-duotone
+      title: 博客
+      url: /
+    - id: wiki
+      theme: '#3DC550'
+      icon: solar:notebook-bookmark-bold-duotone
+      title: 文档
+      url: /wiki/
+
+open_graph:
+  enable: true
+  twitter_id: # for open_graph meta
+
+######## Article ########
+article:
+  # 文章类型，决定布局风格，可以在 front-matter/topic/wiki 中覆盖此参数
+  type: tech # tech: 默认技术类文章, story: 图文类文章，文字和段落间增距大
+  # 缩进两个文字宽度，适合文字类博客，可以在 front-matter/topic/wiki 中覆盖此参数
+  indent: # true / false
+  # 如果没有指定封面，是否根据 tags 作为关键词搜索封面图片？
+  auto_cover: false # search from https://source.unsplash.com/
+  # 封面图宽高比
+  cover_ratio: 2.4
+  # 如果没有指定横幅，是否根据 tags 作为关键词搜索横幅图片？
+  auto_banner: false # search from https://source.unsplash.com/
+  # 如果没有指定 excerpt 和 description，将自动取多长的内容作为文章摘要？
+  auto_excerpt: 128
+  # 分类颜色
+  category_color:
+    '探索号': '#f44336'
+  # 文章许可协议
+  license: '本文采用 [署名-非商业性使用-相同方式共享 4.0 国际](https://creativecommons.org/licenses/by-nc-sa/4.0/) 许可协议，转载请注明出处。'
+  # 分享
+  share: # [wechat, weibo, email, link]
+  # 相关文章，需要安装插件 (for layout: post)
+  # npm i hexo-related-popular-posts
+  related_posts:
+    enable: false
+    max_count: 5
+
+search:
+  service: local_search # local_search, algolia_search, todo...
+  local_search: # 在 front-matter 中设置 indexing:false 来避免被搜索索引
+    field: all # post, page, all
+    path: /search.json # 搜索文件存放位置
+    content: true # 是否搜索内容
+  algolia_search: # Docsearch https://docsearch.algolia.com/apply/ 申请
+    appId: 
+    apiKey: 
+    indexName: 
